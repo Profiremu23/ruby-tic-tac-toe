@@ -34,9 +34,18 @@ class GameBoard
   end
 
   def print_board
-    print "\n| #{board_state[0][0]} | #{board_state[0][1]} | #{board_state[0][2]} |\n| #{board_state[1][0]} | #{board_state[1][1]} | #{board_state[1][2]} |\n| #{board_state[2][0]} | #{board_state[2][1]} | #{board_state[2][2]} |\n"
+    print "| #{board_state[0][0]} | #{board_state[0][1]} | #{board_state[0][2]} |
+| #{board_state[1][0]} | #{board_state[1][1]} | #{board_state[1][2]} |
+| #{board_state[2][0]} | #{board_state[2][1]} | #{board_state[2][2]} |\n"
   end
 end
+
+# Defining the game rules and win conditions
+#class Game
+#  def winning_condition
+#
+#  end
+#end
 
 table = GameBoard.new
 table.cell_free?(0, 1)
