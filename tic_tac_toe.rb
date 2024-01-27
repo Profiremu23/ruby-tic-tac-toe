@@ -36,19 +36,31 @@ class GameBoard
   def print_board
     print "| #{board_state[0][0]} | #{board_state[0][1]} | #{board_state[0][2]} |
 | #{board_state[1][0]} | #{board_state[1][1]} | #{board_state[1][2]} |
-| #{board_state[2][0]} | #{board_state[2][1]} | #{board_state[2][2]} |\n"
+| #{board_state[2][0]} | #{board_state[2][1]} | #{board_state[2][2]} |\n\n"
   end
 end
 
-# Defining the game rules and win conditions
-#class Game
-#  def winning_condition
-#
-#  end
-#end
+# Defining the winning conditions
+class WinningConditions < GameBoard
+  def winning_condition
+    if board_state[0][0] == 'X' &&  board_state[0][1] == 'X' && board_state[0][2] == 'X'
+      puts 'Congratulations! You won!'
+    else
+      puts "It's a draw!"
+    end
+  end
+end
 
-table = GameBoard.new
-table.cell_free?(0, 1)
-table.update_cell(0, 1, 'X')
-table.cell_free?(0, 1)
+# Defining the game conditions
+class Game < WinningConditions
+end
+
+table = Game.new
+p table.cell_free?(0, 0)
+table.update_cell(0, 0, 'X')
 table.print_board
+p table.cell_free?(0, 0)
+table.update_cell(0, 1, 'X')
+table.update_cell(0, 2, 'X')
+table.print_board
+table.winning_condition
