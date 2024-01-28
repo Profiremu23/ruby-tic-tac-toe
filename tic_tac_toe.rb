@@ -43,7 +43,24 @@ end
 # Defining the winning conditions
 class WinningConditions < GameBoard
   def winning_condition
-    if board_state[0][0] == 'X' &&  board_state[0][1] == 'X' && board_state[0][2] == 'X'
+    # Horizontal winning patterns
+    if (board_state[0][0] = 'X' && board_state[0][1] = 'X' && board_state[0][2] = 'X') || (board_state[0][0] = 'O' && board_state[0][1] = 'O' && board_state[0][2] = 'O')
+      puts 'Congratulations! You won!'
+    elsif (board_state[1][0] = 'X' && board_state[1][1] = 'X' && board_state[1][2] = 'X') || (board_state[1][0] = 'O' && board_state[1][1] = 'O' && board_state[1][2] = 'O')
+      puts 'Congratulations! You won!'
+    elsif (board_state[2][0] = 'X' && board_state[2][1] = 'X' && board_state[2][2] = 'X') || (board_state[2][0] = 'O' && board_state[2][1] = 'O' && board_state[2][2] = 'O')
+      puts 'Congratulations! You won!'
+    # Vertical winning patterns
+    elsif (board_state[0][0] = 'X' && board_state[1][0] = 'X' && board_state[2][0] = 'X') || (board_state[0][0] = 'O' && board_state[1][0] = 'O' && board_state[2][0] = 'O')
+      puts 'Congratulations! You won!'
+    elsif (board_state[0][1] = 'X' && board_state[1][1] = 'X' && board_state[2][1] = 'X') || (board_state[0][1] = 'O' && board_state[1][1] = 'O' && board_state[2][1] = 'O')
+      puts 'Congratulations! You won!'
+    elsif (board_state[0][2] = 'X' && board_state[1][2] = 'X' && board_state[2][2] = 'X') || (board_state[0][2] = 'O' && board_state[1][2] = 'O' && board_state[2][2] = 'O')
+      puts 'Congratulations! You won!'
+      # Diagonal winning patterns
+    elsif (board_state[0][0] = 'X' && board_state[1][1] = 'X' && board_state[2][2] = 'X') || (board_state[0][0] = 'O' && board_state[1][1] = 'O' && board_state[2][2] = 'O')
+      puts 'Congratulations! You won!'
+    elsif (board_state[2][0] = 'X' && board_state[1][1] = 'X' && board_state[0][2] = 'X') || (board_state[2][0] = 'O' && board_state[1][1] = 'O' && board_state[0][2] = 'O')
       puts 'Congratulations! You won!'
     else
       puts "It's a draw!"
@@ -56,11 +73,9 @@ class Game < WinningConditions
 end
 
 table = Game.new
-p table.cell_free?(0, 0)
-table.update_cell(0, 0, 'X')
+table.update_cell(2, 0, 'O')
 table.print_board
-p table.cell_free?(0, 0)
-table.update_cell(0, 1, 'X')
-table.update_cell(0, 2, 'X')
+table.update_cell(1, 1, 'O')
+table.update_cell(0, 2, 'O')
 table.print_board
 table.winning_condition
