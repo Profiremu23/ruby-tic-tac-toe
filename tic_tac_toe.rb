@@ -44,11 +44,11 @@ class GameBoard
 
   # Horizontal winning patterns
   def horizontal_winning_condition
-    if (board_state[0][0] == 'X' && board_state[0][1] == 'X' && board_state[0][2] == 'X') || (board_state[0][0] == 'O' && board_state[0][1] == 'O' && board_state[0][2] == 'O')
+    if (board_state[0][0].symbol == 'X' && board_state[0][1].symbol == 'X' && board_state[0][2].symbol == 'X') || (board_state[0][0].symbol == 'O' && board_state[0][1].symbol == 'O' && board_state[0][2].symbol == 'O')
       puts 'Congratulations! You won!'
-    elsif (board_state[1][0] == 'X' && board_state[1][1] == 'X' && board_state[1][2] == 'X') || (board_state[1][0] == 'O' && board_state[1][1] == 'O' && board_state[1][2] == 'O')
+    elsif (board_state[1][0].symbol == 'X' && board_state[1][1].symbol == 'X' && board_state[1][2].symbol == 'X') || (board_state[1][0].symbol == 'O' && board_state[1][1].symbol == 'O' && board_state[1][2].symbol == 'O')
       puts 'Congratulations! You won!'
-    elsif (board_state[2][0] == 'X' && board_state[2][1] == 'X' && board_state[2][2] == 'X') || (board_state[2][0] == 'O' && board_state[2][1] == 'O' && board_state[2][2] == 'O')
+    elsif (board_state[2][0].symbol == 'X' && board_state[2][1].symbol == 'X' && board_state[2][2].symbol == 'X') || (board_state[2][0].symbol == 'O' && board_state[2][1].symbol == 'O' && board_state[2][2].symbol == 'O')
       puts 'Congratulations! You won!'
     else
       puts self.vertical_winning_condition
@@ -57,11 +57,11 @@ class GameBoard
 
   # Vertical winning patterns
   def vertical_winning_condition
-    if (board_state[0][0] == 'X' && board_state[1][0] == 'X' && board_state[2][0] == 'X') || (board_state[0][0] == 'O' && board_state[1][0] == 'O' && board_state[2][0] == 'O')
+    if (board_state[0][0].symbol == 'X' && board_state[1][0].symbol == 'X' && board_state[2][0].symbol == 'X') || (board_state[0][0].symbol == 'O' && board_state[1][0].symbol == 'O' && board_state[2][0].symbol == 'O')
       puts 'Congratulations! You won!'
-    elsif (board_state[0][1] == 'X' && board_state[1][1] == 'X' && board_state[2][1] == 'X') || (board_state[0][1] == 'O' && board_state[1][1] == 'O' && board_state[2][1] == 'O')
+    elsif (board_state[0][1].symbol == 'X' && board_state[1][1].symbol == 'X' && board_state[2][1].symbol == 'X') || (board_state[0][1].symbol == 'O' && board_state[1][1].symbol == 'O' && board_state[2][1].symbol == 'O')
       puts 'Congratulations! You won!'
-    elsif (board_state[0][2] == 'X' && board_state[1][2] == 'X' && board_state[2][2] == 'X') || (board_state[0][2] == 'O' && board_state[1][2] == 'O' && board_state[2][2] == 'O')
+    elsif (board_state[0][2].symbol == 'X' && board_state[1][2].symbol == 'X' && board_state[2][2].symbol == 'X') || (board_state[0][2].symbol == 'O' && board_state[1][2].symbol == 'O' && board_state[2][2].symbol == 'O')
       puts 'Congratulations! You won!'
     else
       puts self.diagonal_winning_condition
@@ -70,9 +70,9 @@ class GameBoard
 
   # Diagonal winning patterns + drawing and game continuation logic
   def diagonal_winning_condition
-    if (board_state[0][0] == 'X' && board_state[1][1] == 'X' && board_state[2][2] == 'X') || (board_state[0][0] == 'O' && board_state[1][1] == 'O' && board_state[2][2] == 'O')
+    if (board_state[0][0].symbol == 'X' && board_state[1][1].symbol == 'X' && board_state[2][2].symbol == 'X') || (board_state[0][0].symbol == 'O' && board_state[1][1].symbol == 'O' && board_state[2][2].symbol == 'O')
       puts 'Congratulations! You won!'
-    elsif (board_state[2][0] == 'X' && board_state[1][1] == 'X' && board_state[0][2] == 'X') || (board_state[2][0] == 'O' && board_state[1][1] == 'O' && board_state[0][2] == 'O')
+    elsif (board_state[2][0].symbol == 'X' && board_state[1][1].symbol == 'X' && board_state[0][2].symbol == 'X') || (board_state[2][0].symbol == 'O' && board_state[1][1].symbol == 'O' && board_state[0][2].symbol == 'O')
       puts 'Congratulations! You won!'
     elsif turn > 9
       puts "It's a draw!"
@@ -95,10 +95,9 @@ class Game < GameBoard
 end
 
 table = Game.new
-table.update_cell(2, 0, 'X')
+table.update_cell(0, 0, 'X')
 table.print_board
-table.update_cell(1, 1, 'X')
+table.update_cell(0, 1, 'X')
 table.update_cell(0, 2, 'X')
 table.print_board
-table.horizontal_winning_condition
 table.horizontal_winning_condition
