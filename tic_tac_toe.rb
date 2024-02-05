@@ -24,7 +24,7 @@ class GameBoard
 
   def initialize
     @board_state = Array.new(3) { Array.new(3) { Cell.new } }
-    @turn = 0
+    @turn = 1
     @character = 'X'
   end
 
@@ -33,7 +33,12 @@ class GameBoard
   end
 
   def update_cell(row, column, symbol)
-    board_state[row][column].symbol = symbol
+    if cell_free?(row, column)
+      board_state[row][column].symbol = symbol
+    else
+      puts "The entered cell for row #{row} and column #{column} is already taken!"
+      @turn = turn - 1
+    end
   end
 
   def print_board
@@ -77,27 +82,42 @@ class GameBoard
     elsif turn > 9
       puts "It's a draw!"
     else
-      puts 'Game continues!'
       @turn = turn + 1
+      self.game_function
     end
   end
 end
 
 # Defining the game conditions
 class Game < GameBoard
-  def current_player
+  def game_function
+    puts "Turn #{turn}"
+
     if turn.odd?
       character = 'X'
     else
       character = 'O'
     end
+
+    puts 'Please enter a number for your chosen row:'
+    row = gets.chomp.to_i
+    until row.negative? == false && row < 3
+      puts "The given value for the board's row is out of range!"
+      row = gets.chomp.to_i
+    end
+
+    puts 'Please enter a number for your chosen column:'
+    column = gets.chomp.to_i
+    until column.negative? == false && column < 3
+      puts "The given value for the board's column is out of range!"
+      column = gets.chomp.to_i
+    end
+
+    self.update_cell(row, column, character)
+    puts self.print_board
+    self.horizontal_winning_condition
   end
 end
 
 table = Game.new
-table.update_cell(0, 0, 'X')
-table.print_board
-table.update_cell(0, 1, 'X')
-table.update_cell(0, 2, 'X')
-table.print_board
-table.horizontal_winning_condition
+table.game_function
